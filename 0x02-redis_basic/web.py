@@ -41,7 +41,8 @@ def cache_result(method: Callable) -> Callable:
 @cache_result
 def get_page(url: str) -> str:
     """
-    Fetches HTML content of a URL, with access count tracking and 10-second caching.
+    Fetches HTML content of a URL, with access count tracking
+    and 10-second caching.
 
     Args:
         url: The URL to fetch.

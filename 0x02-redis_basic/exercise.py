@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Module that defines a Cache class for storing and retrieving data using Redis with tracking."""
+"""Module that defines a Cache class for storing
+and retrieving data using Redis with tracking."""
 
 import redis
 import uuid
@@ -16,7 +17,8 @@ def count_calls(method: Callable) -> Callable:
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """Wrapper function that increments call count and calls original method."""
+        """Wrapper function that increments call count
+        and calls original method."""
         key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
@@ -75,16 +77,19 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float, None]:
+    def get(self, key: str, fn: Optional[Callable] =
+            None) -> Union[str, bytes, int, float, None]:
         """
-        Retrieve data from Redis by key and optionally apply a conversion function.
+        Retrieve data from Redis by key
+        and optionally apply a conversion function.
 
         Args:
             key: The Redis key to retrieve.
             fn: A callable used to convert the data type.
 
         Returns:
-            The retrieved data, possibly converted using fn, or None if key doesn't exist.
+            The retrieved data, possibly converted using fn,
+            or None if key doesn't exist.
         """
         value = self._redis.get(key)
         if value is None:
